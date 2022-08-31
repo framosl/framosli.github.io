@@ -1,0 +1,183 @@
+<!doctype html>
+<html> 
+ <head> 
+  <title>Nutrición y Proteinas  - Tabla de proteinas de frutas</title> 
+  <meta charset="utf-8"> 
+  <link rel="stylesheet" type="text/css" href="/estilos.css"> 
+  <script type="text/javascript" src="/funciones.js"></script> 
+ <style type="text/css" id="dcoder_stylesheet">body {font-family: Arial, Helvetica, sans-serif; background-color: #b9c9fe;}
+
+ 
+
+table { font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif; font-size: 12px; margin: 45px; width: 550px;
+
+    text-align: center; border-collapse: collapse; }
+    
+ 
+
+th { font-size: 13px; font-weight: normal; padding: 8px; background: teal; border-top: 10px solid yellow;
+
+    border-bottom: 1px solid white; color: #039; }
+
+ 
+
+td { padding: 8px; background: lime; border-bottom: 1px solid #fff; color: #669; border-top: 2px solid red; }
+
+ 
+
+tr:hover td { background: orange; color: navy; }
+
+ 
+
+.editar {color: blue; cursor:pointer;}
+
+ 
+
+#contenedorArch {margin-left: 45px; font-size:12px;}
+
+
+ 
+
+.boton {   color: black; padding: 5px; margin: 2px;
+
+  background-color: yellow;
+
+  font-weight: bold; }</style></head> 
+ <body> 
+  <table> 
+   <caption>
+     Contenido nutricional por cada 100 g de alimento. 
+   </caption> 
+   <tbody> 
+    <tr> 
+     <th>Alimento</th> 
+     <th>Calorías (kCal)</th> 
+     <th>Grasas (g)</th> 
+     <th>Proteína (g)</th> 
+     <th>Carbohidratos (g)</th> 
+     <th>Opciones</th> 
+    </tr> 
+    <tr> 
+     <td>naranja</td> 
+     <td>49</td> 
+     <td>0.2</td> 
+     <td>0.4</td> 
+     <td>12.7</td> 
+     <td><span class="editar" onclick="transformarEnEditable(this)">Editar</span></td> 
+    </tr> 
+    <tr> 
+     <td>Papaya</td> 
+     <td>90</td> 
+     <td>0.3</td> 
+     <td>1.0</td> 
+     <td>23.5</td> 
+     <td><span class="editar" onclick="transformarEnEditable(this)">Editar</span></td> 
+    </tr> 
+    <tr> 
+     <td>Sandia</td> 
+     <td>46</td> 
+     <td>0.4</td> 
+     <td>0.9</td> 
+     <td>10.9</td> 
+     <td><span class="editar" onclick="transformarEnEditable(this)">Editar</span></td> 
+    </tr> 
+    <tr> 
+     <td>Franguesa</td> 
+     <td>37</td> 
+     <td>0.5</td> 
+     <td>0.8</td> 
+     <td>8.3</td> 
+     <td><span class="editar" onclick="transformarEnEditable(this)">Editar</span></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+  <div id="contenedorArch"> 
+  </div> 
+ 
+<script type="text/javascript" id="dcoder_script">var edit=false;
+
+ 
+
+function transformarEnEditable(nodo){
+
+//El nodo recibido es SPAN
+
+if (edit == false) {
+
+var nodoTd = nodo.parentNode; //Nodo TD
+
+var nodoTr = nodoTd.parentNode; //Nodo TR
+
+var nodoContenedorArch = document.getElementById('contenedorArch'); //Nodo DIV
+
+var nodosEnTr = nodoTr.getElementsByTagName('td');
+
+var alimento = nodosEnTr[0].textContent; var calorias = nodosEnTr[1].textContent;
+
+var grasas = nodosEnTr[2].textContent; var proteina = nodosEnTr[3].textContent;
+
+var carbohidratos = nodosEnTr[4].textContent; var opciones = nodosEnTr[5].textContent;
+
+var nuevoCodigoHtml = '<td><input type="text" name="alimento" id="alimento" value="'+alimento+'" size="10"></td>'+
+
+'<td><input type="text" name="calorias" id="calorias" value="'+calorias+'" size="5"</td>'+
+
+'<td><input type="text" name="grasas" id="grasas" value="'+grasas+'" size="5"</td>'+
+
+'<td><input type="text" name="proteina" id="proteina" value="'+proteina+'" size="5"</td>'+
+
+'<td><input type="text" name="carbohidratos" id="carbohidratos" value="'+carbohidratos+'" size="5"</td> <td>En edición</td>';
+
+ 
+
+nodoTr.innerHTML = nuevoCodigoHtml;
+
+ 
+
+nodoContenedorArch.innerHTML = 'Tendras que presionar Aceptar para guardar los cambios o Cancelar (seran anulados)'+
+
+'<form name = "archivo" action="https://www.doctorgrekin.cl/tabla-nutricional-frutas-verduras/" method="get" onsubmit="capturarEnvio()" onreset="anular()">'+
+
+'<input class="boton" type = "submit" value="Aceptar"> <input class="boton" type="reset" value="Cancelar">';
+
+edit = "true";}
+
+else {alert ('Editara una sola línea. ohhh!! tendra que volverla recargar');
+
+}
+
+}
+
+ 
+
+function capturarEnvio(){
+
+var nodoContenedorArch = document.getElementById('contenedorArch'); //Nodo DIV
+
+nodoContenedorArch.innerHTML = 'Tendras que presionar Aceptar para guardar los cambios o Cancelar (seran anulados)'+
+
+'<form name = "archivo" action="https://www.doctorgrekin.cl/tabla-nutricional-frutas-verduras/" method="get" onsubmit="capturarEnvio()" onreset="anular()">'+
+
+'<input type="hidden" name="alimento" value="'+document.querySelector('#alimento').value+'">'+
+
+'<input type="hidden" name="calorias" value="'+document.querySelector('#calorias').value+'">'+
+
+'<input type="hidden" name="grasas" value="'+document.querySelector('#grasas').value+'">'+
+
+'<input type="hidden" name="proteina" value="'+document.querySelector('#proteina').value+'">'+
+
+'<input type="hidden" name="carbohidratos" value="'+document.querySelector('#carbohidratos').value+'">'+
+
+'<input class="boton" type = "submit" value="Aceptar"> <input class="boton" type="reset" value="Cancelar">';
+
+document.archivo.submit();
+
+}
+
+ 
+
+function anular(){
+
+window.location.reload();
+
+}</script></body></html>
